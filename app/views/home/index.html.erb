@@ -1,0 +1,42 @@
+<main class="bg-light text-center py-5">
+  <div class="container">
+    <!-- ゲームタイトル -->
+    <h1 class="display-4 text-primary font-weight-bold">Which_one_game</h1>
+    <p class="lead text-dark">楽しい世界へようこそ！ゲームを始めてスコアを競おう！</p>
+    
+    <!-- ボタンセクション -->
+    <div class="mt-4">
+      <% if user_signed_in? %>
+        <%= link_to "ゲーム開始", start_game_path, class: "btn btn-warning btn-lg mx-2" %>
+        <%= link_to "マイページ", user_path(current_user), class: "btn btn-success btn-lg mx-2" %>
+      <% else %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary btn-lg mx-2" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-danger btn-lg mx-2" %>
+      <% end %>
+    </div>
+
+    <!-- ゲームの遊び方 -->
+    <section class="mt-5">
+      <h2 class="text-danger font-weight-bold">ゲームの遊び方</h2>
+      <p class="text-muted">
+        クイズに答えて得点を稼ぎましょう！友達と競争してランキングトップを目指してください。
+      </p>
+    </section>
+
+
+    <section class="mt-5">
+      <h2 class="text-primary font-weight-bold">クイズの例</h2>
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          プレイヤー1 
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          プレイヤー2 
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          プレイヤー3 
+        </li>
+      </ul>
+    </section>
+  </div>
+</main>
