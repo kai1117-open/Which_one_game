@@ -35,6 +35,16 @@
       margin-top: 70px; /* ヘッダーの高さ分余白を追加 */
       margin-bottom: 70px; /* フッターの高さ分余白を追加 */
     }
+
+    .plain-link {
+      color: inherit; /* 親要素の色を引き継ぐ */
+      text-decoration: none; /* 下線を削除 */
+    }
+
+    .plain-link:hover, .plain-link:focus {
+      text-decoration: none; /* ホバー時の下線も削除 */
+      color: inherit; /* ホバー時の色も変更しない */
+    }
   </style>
 </head>
 <body>
@@ -66,7 +76,7 @@
 </main>
 
 <footer class="bg-primary text-white text-center py-3">
-  <p>&copy; 2025 Which_one_game</p>
+<p>&copy; 2025 Which_<a href="/admin/sign_in" class="plain-link">one</a>_game</p>
 </footer>
 </body>
 </html>
