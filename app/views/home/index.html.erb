@@ -7,8 +7,8 @@
     <!-- ボタンセクション -->
     <div class="mt-4">
       <% if user_signed_in? %>
-        <%= link_to "ゲーム開始", start_game_path, class: "btn btn-warning btn-lg mx-2" %>
-        <%= link_to "マイページ", user_path(current_user), class: "btn btn-success btn-lg mx-2" %>
+        <%= link_to "ゲーム開始", root_path, class: "btn btn-warning btn-lg mx-2" %>
+        <%= link_to "マイページ", root_path, class: "btn btn-success btn-lg mx-2" %>
       <% else %>
         <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary btn-lg mx-2" %>
         <%= link_to "新規登録", new_user_registration_path, class: "btn btn-danger btn-lg mx-2" %>

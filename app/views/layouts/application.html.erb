@@ -56,9 +56,9 @@
     <nav>
       <% if user_signed_in? %>
         <ul class="nav">
-          <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class: "nav-link text-white" %></li>
-          <li class="nav-item"><%= link_to "ユーザー検索", users_path, class: "nav-link text-white" %></li>
-          <li class="nav-item"><%= link_to "ゲーム開始", "#", class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "マイページ", root_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "ユーザー検索", root_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "ゲーム開始", root_path, class: "nav-link text-white" %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-white" %></li>
         </ul>
       <% else %>

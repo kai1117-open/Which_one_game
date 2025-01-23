@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    resources :users, only: [:index, :show, :edit, :update] do
+      post 'withdraw', on: :member
+    end
+  end
+
+
+
+
 
   root "home#index" # トップページ用
 # 顧客用
@@ -7,6 +16,7 @@ Rails.application.routes.draw do
 devise_for :users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
+
 }
 
 # 管理者用
