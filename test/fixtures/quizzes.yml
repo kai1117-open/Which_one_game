@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  creator_id: 
+  genre_id: 
+  question_text: MyText
+  choice_1: MyString
+  choice_2: MyString
+
+two:
+  creator_id: 
+  genre_id: 
+  question_text: MyText
+  choice_1: MyString
+  choice_2: MyString

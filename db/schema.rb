@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_23_131959) do
+ActiveRecord::Schema.define(version: 2025_01_24_092714) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,49 @@ ActiveRecord::Schema.define(version: 2025_01_23_131959) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "genre_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "quiz_room_associations", force: :cascade do |t|
+    t.integer "quiz_room_id", null: false
+    t.integer "quiz_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_id"], name: "index_quiz_room_associations_on_quiz_id"
+    t.index ["quiz_room_id"], name: "index_quiz_room_associations_on_quiz_room_id"
+  end
+
+  create_table "quiz_rooms", force: :cascade do |t|
+    t.string "room_name", null: false
+    t.integer "owner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_quiz_rooms_on_owner_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.integer "creator_id", null: false
+    t.integer "genre_id", null: false
+    t.text "question_text", null: false
+    t.string "choice_1", null: false
+    t.string "choice_2", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_quizzes_on_creator_id"
+    t.index ["genre_id"], name: "index_quizzes_on_genre_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,4 +81,11 @@ ActiveRecord::Schema.define(version: 2025_01_23_131959) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "follows", "users", column: "followed_id"
+  add_foreign_key "follows", "users", column: "follower_id"
+  add_foreign_key "quiz_room_associations", "quiz_rooms"
+  add_foreign_key "quiz_room_associations", "quizzes"
+  add_foreign_key "quiz_rooms", "users", column: "owner_id"
+  add_foreign_key "quizzes", "genres"
+  add_foreign_key "quizzes", "users", column: "creator_id"
 end
