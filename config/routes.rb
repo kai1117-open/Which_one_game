@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   namespace :public do
     resources :users, only: [:index, :show, :edit, :update] do
       post 'withdraw', on: :member
+      collection do
+        get 'search'  # 検索用ルート
+      end
     end
   end
 

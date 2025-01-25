@@ -8,6 +8,15 @@ class Public::UsersController < ApplicationController
 
   end
  
+
+  def edit
+    
+  end
+
+  def sarch
+
+  end
+  
   private
 
   def user_params
