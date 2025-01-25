@@ -29,7 +29,8 @@ ActiveRecord::Schema.define(version: 2025_01_24_092714) do
     t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+    t.index ["followed_id"], name: "index_follows_on_followed_id"
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -57,7 +58,7 @@ ActiveRecord::Schema.define(version: 2025_01_24_092714) do
 
   create_table "quizzes", force: :cascade do |t|
     t.integer "creator_id", null: false
-    t.integer "genre_id", null: false
+    t.integer "genre_id"
     t.text "question_text", null: false
     t.string "choice_1", null: false
     t.string "choice_2", null: false
