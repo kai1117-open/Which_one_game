@@ -1,6 +1,52 @@
 Rails.application.routes.draw do
 
+
+    namespace :admin do
+      # admin/home
+      get 'home/index', to: 'home#index'
+  
+      # admin/users
+      resources :users, only: [:index, :show, :edit, :update, :destroy]
+  
+      # admin/quizs
+      resources :quizs, only: [:index, :show, :edit, :update, :destroy]
+  
+      # admin/quiz_rooms
+      resources :quiz_rooms, only: [:index, :show, :edit, :update, :destroy]
+  
+      # admin/genre
+      resources :genre
+    end
+
+
   namespace :public do
+    # RoomAssociation関連
+    resources :room_association, only: [:create, :destroy]
+  
+    # QuizRooms関連
+    resources :quiz_rooms, only: [] do
+      collection do
+        get 'top'
+        get 'join'
+        get 'make'
+        get 'create'
+        get 'room'
+        get 'quiz_select'
+        get 'quiz_set'
+        get 'develop_select'
+        get 'develop_set'
+        get 'destroy'
+        get 'start_game'
+      end
+    end
+  
+    # Quizs関連
+    resources :quizs, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  
+    # Follows関連
+    resources :follows, only: [:create, :destroy]
+  
+    # Users関連
     resources :users, only: [:index, :show, :edit, :update] do
       post 'withdraw', on: :member
       collection do
@@ -8,7 +54,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
 
 
 
