@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :followed_users, through: :follows, source: :followed
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  enum status: { active: 0, inactive: 1 } # ステータス
 end
