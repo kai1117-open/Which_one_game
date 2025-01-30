@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_24_092714) do
+ActiveRecord::Schema.define(version: 2025_01_30_093459) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2025_01_24_092714) do
     t.string "genre_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "introduction"
   end
 
   create_table "quiz_room_associations", force: :cascade do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 2025_01_24_092714) do
     t.integer "quiz_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
     t.index ["quiz_id"], name: "index_quiz_room_associations_on_quiz_id"
     t.index ["quiz_room_id"], name: "index_quiz_room_associations_on_quiz_room_id"
   end
@@ -53,6 +55,9 @@ ActiveRecord::Schema.define(version: 2025_01_24_092714) do
     t.integer "owner_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "questioner_id"
+    t.integer "quiz_id"
+    t.integer "room_status", default: 0, null: false
     t.index ["owner_id"], name: "index_quiz_rooms_on_owner_id"
   end
 
@@ -78,6 +83,7 @@ ActiveRecord::Schema.define(version: 2025_01_24_092714) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.text "introduction"
+    t.integer "status", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -86,7 +92,10 @@ ActiveRecord::Schema.define(version: 2025_01_24_092714) do
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "quiz_room_associations", "quiz_rooms"
   add_foreign_key "quiz_room_associations", "quizzes"
+  add_foreign_key "quiz_room_associations", "users"
+  add_foreign_key "quiz_rooms", "quizzes"
   add_foreign_key "quiz_rooms", "users", column: "owner_id"
+  add_foreign_key "quiz_rooms", "users", column: "questioner_id"
   add_foreign_key "quizzes", "genres"
   add_foreign_key "quizzes", "users", column: "creator_id"
 end
