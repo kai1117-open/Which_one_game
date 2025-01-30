@@ -26,9 +26,6 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def login_top
-    @user = current_user if user_signed_in? # ログインユーザーを取得
-  end
 
   def edit
     @user = current_user

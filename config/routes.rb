@@ -51,7 +51,6 @@ Rails.application.routes.draw do
       post 'withdraw', on: :member
       collection do
         get 'search'  # 検索用ルート
-        get 'login_top'
       end
     end
   end
