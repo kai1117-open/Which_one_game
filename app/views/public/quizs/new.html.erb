@@ -1,2 +1,29 @@
-<h1>Public::Quizs#new</h1>
-<p>Find me in app/views/public/quizs/new.html.erb</p>
+<div class="container">
+  <h2>新しいクイズを作成</h2>
+
+  <%= form_with model: @quiz, url: public_quizs_path, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :question_text, "問題文" %>
+      <%= form.text_area :question_text, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :choice_1, "選択肢1" %>
+      <%= form.text_field :choice_1, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :choice_2, "選択肢2" %>
+      <%= form.text_field :choice_2, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :genre_id, "ジャンル" %>
+      <%= form.collection_select :genre_id, Genre.all, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
+    </div>
+
+    <%= form.submit "作成", class: "btn btn-success" %>
+  <% end %>
+
+  <%= link_to "キャンセル", public_quizs_path, class: "btn btn-secondary mt-3" %>
+</div>

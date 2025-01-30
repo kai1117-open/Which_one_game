@@ -1,0 +1,9 @@
+<div class="container">
+  <h2><%= @user.name %> さんのプロフィール</h2>
+  <p>自己紹介: <%= @user.introduction %></p>
+  <p>メール: <%= @user.email %></p>
+
+  <% if @user == current_user %>
+    <%= link_to "プロフィール編集", edit_public_user_path(@user), class: "btn btn-primary" %>
+  <% end %>
+</div>
