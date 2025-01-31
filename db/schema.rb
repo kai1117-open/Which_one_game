@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_30_093459) do
+ActiveRecord::Schema.define(version: 2025_01_31_091210) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 2025_01_30_093459) do
 
   create_table "quiz_room_associations", force: :cascade do |t|
     t.integer "quiz_room_id", null: false
-    t.integer "quiz_id", null: false
+    t.integer "quiz_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.index ["quiz_id"], name: "index_quiz_room_associations_on_quiz_id"
     t.index ["quiz_room_id"], name: "index_quiz_room_associations_on_quiz_room_id"
   end

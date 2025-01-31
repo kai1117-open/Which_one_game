@@ -1,2 +1,26 @@
-<h1>Public::QuizRooms#quiz_select</h1>
-<p>Find me in app/views/public/quiz_rooms/quiz_select.html.erb</p>
+<div class="container">
+  <h2 class="text-primary font-weight-bold">クイズを選択</h2>
+
+  <%= form_with url: quiz_select_public_quiz_rooms_path, method: :get, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :query, "問題文を検索" %>
+      <%= form.text_field :query, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :genre_id, "ジャンルでフィルター" %>
+      <%= form.collection_select :genre_id, Genre.all, :id, :genre_name, { prompt: "すべて" }, class: "form-control" %>
+    </div>
+
+    <%= form.submit "検索", class: "btn btn-primary" %>
+  <% end %>
+
+  <ul class="list-group mt-4">
+    <% @quizzes.each do |quiz| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= quiz.question_text %>
+        <%= link_to "選択", quiz_set_public_quiz_rooms_path(id: @quiz_room.id, quiz_id: quiz.id), class: "btn btn-primary" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

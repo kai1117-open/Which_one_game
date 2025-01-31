@@ -24,19 +24,18 @@ Rails.application.routes.draw do
     resources :room_association, only: [:create, :destroy]
   
     # QuizRooms関連
-    resources :quiz_rooms, only: [] do
+    resources :quiz_rooms, only: [:destroy] do
       collection do
         get 'top'
         get 'join'
         get 'make'
-        get 'create'
+        post 'create'
         get 'room'
         get 'quiz_select'
         get 'quiz_set'
         get 'develop_select'
         get 'develop_set'
-        get 'destroy'
-        get 'start_game'
+        post 'start_game'
       end
     end
   

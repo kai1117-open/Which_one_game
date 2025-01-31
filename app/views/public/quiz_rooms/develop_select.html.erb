@@ -1,2 +1,12 @@
-<h1>Public::QuizRooms#develop_select</h1>
-<p>Find me in app/views/public/quiz_rooms/develop_select.html.erb</p>
+<div class="container">
+  <h2 class="text-primary font-weight-bold">出題者を選択</h2>
+
+  <ul class="list-group">
+    <% @participants.each do |user| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= user.name %>
+        <%= link_to "選択", develop_select_public_quiz_rooms_path(id: @quiz_room.id, questioner_id: user.id), class: "btn btn-primary" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

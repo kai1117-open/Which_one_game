@@ -1,0 +1,26 @@
+<div class="container">
+  <h2 class="text-primary font-weight-bold">部屋を探す</h2>
+
+  <%= form_with url: join_public_quiz_rooms_path, method: :get, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :room_name, "部屋の名前" %>
+      <%= form.text_field :room_name, class: "form-control" %>
+    </div>
+
+    <%= form.submit "検索", class: "btn btn-primary" %>
+  <% end %>
+
+  <% if @quiz_rooms.present? %>
+    <h3 class="mt-4">検索結果</h3>
+    <ul class="list-group">
+      <% @quiz_rooms.each do |room| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= room.room_name %>
+          <%= link_to "参加する", room_public_quiz_rooms_path(id: room.id), class: "btn btn-success" %>
+        </li>
+      <% end %>
+    </ul>
+  <% elsif params[:room_name].present? %>
+    <p class="text-danger mt-3">該当する部屋が見つかりません。</p>
+  <% end %>
+</div>
