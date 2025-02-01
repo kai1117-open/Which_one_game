@@ -35,18 +35,3 @@
       class: "btn btn-danger mt-3" %>
 <% end %>
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll(".choice-button").forEach(button => {
-    button.addEventListener("click", function() {
-      // すべてのボタンの色をリセット
-      let buttons = this.parentElement.querySelectorAll(".choice-button");
-      buttons.forEach(btn => btn.classList.remove("btn-primary", "btn-secondary"));
-
-      // クリックしたボタンを色変更
-      this.classList.add("btn-primary");
-    });
-  });
-});
-
-</script>
