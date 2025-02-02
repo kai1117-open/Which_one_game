@@ -1,6 +1,4 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6 col-12"> <!-- スマホ対応のcol-12を追加 -->
+
       <h2 class="text-center text-primary mb-4">ログイン</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "p-4 border rounded shadow-sm bg-white" }) do |f| %>
@@ -22,6 +20,3 @@
       <% end %>
 
       <%= render "public/shared/links" %>
-    </div>
-  </div>
-</div>
