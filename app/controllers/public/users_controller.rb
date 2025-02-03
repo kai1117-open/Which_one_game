@@ -7,11 +7,18 @@ class Public::UsersController < ApplicationController
 
   def search
     if params[:query].present?
-      @users = User.where("name LIKE ?", "%#{params[:query]}%")
+      query = params[:query].strip
+  
+      if query.match?(/^\d+$/) # 数値のみかチェック
+        @users = User.where("name LIKE ? OR friend_id = ?", "%#{query}%", query.to_i)
+      else
+        @users = User.where("name LIKE ?", "%#{query}%")
+      end
     else
       @users = User.all
     end
   end
+  
 
   def new
     @user = User.new
