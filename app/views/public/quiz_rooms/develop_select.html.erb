@@ -5,8 +5,8 @@
     <% @participants.each do |user| %>
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <%= user.name %>
-        <%= link_to "選択", develop_select_public_quiz_rooms_path(id: @quiz_room.id, questioner_id: user.id), class: "btn btn-primary" %>
-      </li>
+        <%= link_to "選択", develop_set_public_quiz_rooms_path(id: @quiz_room.id, questioner_id: user.id), class: "btn btn-primary" %>
+        </li>
     <% end %>
   </ul>
 </div>

@@ -43,22 +43,14 @@ class Public::QuizRoomsController < ApplicationController
   # 出題者の選択画面
   def develop_select
     @participants = QuizRoomAssociation.where(quiz_room_id: @quiz_room.id).map(&:user)
-
-
-
   end
 
-  # 出題者を設定
-  def quiz_set
-    if params[:quiz_id].present?
-      @quiz_room.update(quiz_id: params[:quiz_id])
-  
-      # choice_1 と choice_2 の配置をランダムに決定
-      @quiz_room.update(choice_order: [1, 2].shuffle)
-  
-      redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), notice: "クイズが設定されました。"
+  def develop_set
+    if params[:questioner_id].present?
+      @quiz_room.update(questioner_id: params[:questioner_id])
+      redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), notice: "出題者が設定されました。"
     else
-      redirect_to quiz_select_public_quiz_rooms_path(id: @quiz_room.id), alert: "クイズを選択してください。"
+      redirect_to quiz_select_public_quiz_rooms_path(id: @quiz_room.id), alert: "出題者を選択してください。"
     end
   end
 
