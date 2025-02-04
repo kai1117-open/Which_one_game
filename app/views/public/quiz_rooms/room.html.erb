@@ -2,9 +2,13 @@
   <h2 class="text-primary font-weight-bold"><%= @quiz_room.room_name %></h2>
 
   <h4 class="mt-4">出題者:</h4>
-  <% if @quiz_room.owner_id == current_user.id %>
     <% if @quiz_room.questioner_id.present? %>
-      <p><%= User.find(@quiz_room.questioner_id).name %></p>
+    <p><%= User.find(@quiz_room.questioner_id).name %></p>
+    <% end %>
+  <% if @quiz_room.owner_id == current_user.id %>
+  
+    <% if @quiz_room.questioner_id.present? %>
+      
       <%= link_to "出題者を変更", develop_select_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-warning" %>
     <% else %>
       <%= link_to "出題者を選ぶ", develop_select_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-warning" %>
@@ -12,9 +16,13 @@
   <% end %>
 
   <h4 class="mt-4">選択されたクイズ:</h4>
+  <% if @quiz_room.quiz_id.present? %>
+    <p><%= Quiz.find(@quiz_room.quiz_id).question_text %></p>
+  <% end %>
   <% if @quiz_room.owner_id == current_user.id %>
+  
     <% if @quiz_room.quiz_id.present? %>
-      <p><%= Quiz.find(@quiz_room.quiz_id).question_text %></p>
+      
       <%= link_to "クイズを変更", quiz_select_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-warning" %>
     <% else %>
       <%= link_to "クイズを選ぶ", quiz_select_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-warning" %>
@@ -51,16 +59,25 @@
   <tbody>
     <% @participants.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
         <td>
+        <%= user.name %>
+        <% if @quiz_room.questioner_id == user.id %>
+        <span style="color: red;">出題者</span>
+        <% end %>
+        </td>
+        <td>
+        <% if @quiz_room.quiz_id.present? %>
           <button id="choice_1_<%= user.id %>" class="btn btn-outline-primary choice-btn">
             <%= Quiz.find(@quiz_room.quiz_id).choice_1 %>
           </button>
+        <% end %>
         </td>
         <td>
+        <% if @quiz_room.quiz_id.present? %>
           <button id="choice_2_<%= user.id %>" class="btn btn-outline-primary choice-btn">
             <%= Quiz.find(@quiz_room.quiz_id).choice_2 %>
           </button>
+        <% end %>
         </td>
       </tr>
     <% end %>
