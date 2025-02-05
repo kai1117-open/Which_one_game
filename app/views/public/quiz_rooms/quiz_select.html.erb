@@ -1,6 +1,6 @@
 <div class="container">
   <h2 class="text-primary font-weight-bold">クイズを選択</h2>
-
+<div class="card bg-light shadow p-4">
   <%= form_with url: quiz_select_public_quiz_rooms_path, method: :get, local: true do |form| %>
     <div class="mb-3">
       <%= form.label :query, "問題文を検索" %>
@@ -12,7 +12,7 @@
       <%= form.collection_select :genre_id, Genre.all, :id, :genre_name, { prompt: "すべて" }, class: "form-control" %>
     </div>
 
-    <%= form.submit "検索", class: "btn btn-primary" %>
+    <%= form.submit "検索", class: "btn btn-primary w-100" %>
   <% end %>
 
   <ul class="list-group mt-4">
@@ -23,4 +23,8 @@
       </li>
     <% end %>
   </ul>
+</div>
+<div class="text-center mt-3 mb-3">
+  <%= link_to "戻る", "javascript:history.back()", class: "btn btn-secondary btn-lg" %>
+</div>
 </div>

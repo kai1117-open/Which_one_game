@@ -1,5 +1,6 @@
 <div class="container">
   <h2>プロフィール編集</h2>
+<div class="card bg-light shadow p-4">
   <%= form_with model: @user, url: public_user_path(@user), method: :patch, local: true , html: { class: "p-4 border rounded shadow-sm bg-white" } do |form| %>
     <div class="mb-3">
       <%= form.label :name, "名前" %>
@@ -21,6 +22,10 @@
       <%= form.text_area :introduction, class: "form-control" %>
     </div>
 
-    <%= form.submit "更新", class: "btn btn-primary" %>
+    <%= form.submit "更新", class: "btn btn-primary w-100" %>
   <% end %>
+</div>
+<div class="text-center mt-3 mb-3">
+  <%= link_to "戻る", "javascript:history.back()", class: "btn btn-secondary btn-lg" %>
+</div>
 </div>

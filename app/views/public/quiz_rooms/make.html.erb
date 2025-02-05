@@ -1,13 +1,17 @@
 <div class="container">
-  <h2 class="text-primary font-weight-bold">部屋を作成</h2>
+  <h2 class="text-primary font-weight-bold">クイズ部屋を作成</h2>
+  <div class="card bg-light shadow p-4">
+    <%= form_with model: @quiz_room, url: public_quiz_rooms_path, method: :post, local: true do |form| %>
 
-  <%= form_with model: @quiz_room, url: public_quiz_rooms_path, method: :post, local: true do |form| %>
+      <div class="mb-3">
+        <%= form.label :room_name, "部屋の名前" %>
+        <%= form.text_field :room_name, class: "form-control" %>
+      </div>
 
-    <div class="mb-3">
-      <%= form.label :room_name, "部屋の名前" %>
-      <%= form.text_field :room_name, class: "form-control" %>
-    </div>
-
-    <%= form.submit "部屋を作成", class: "btn btn-success" %>
-  <% end %>
+      <%= form.submit "作成", class: "btn btn-success w-100" %>
+    <% end %>
+  </div>
+  <div class="text-center mt-3 mb-3">
+    <%= link_to "戻る", "javascript:history.back()", class: "btn btn-secondary btn-lg" %>
+  </div>  
 </div>
