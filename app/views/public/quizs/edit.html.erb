@@ -1,6 +1,6 @@
 <div class="container">
   <h2>クイズ編集</h2>
-
+<div class="card bg-light shadow p-4">
   <%= form_with model: @quiz, url: public_quiz_path(@quiz), method: :patch, local: true do |form| %>
     <div class="mb-3">
       <%= form.label :question_text, "問題文" %>
@@ -22,8 +22,11 @@
       <%= form.collection_select :genre_id, Genre.all, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
     </div>
 
-    <%= form.submit "更新", class: "btn btn-success" %>
+    <%= form.submit "更新", class: "btn btn-success w-100" %>
   <% end %>
 
-  <%= link_to "キャンセル", public_quizs_path, class: "btn btn-secondary mt-3" %>
+</div>
+<div class="text-center mt-3 mb-3">
+  <%= link_to "戻る", "javascript:history.back()", class: "btn btn-secondary btn-lg" %>
+</div>
 </div>

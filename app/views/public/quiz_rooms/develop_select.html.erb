@@ -1,6 +1,6 @@
 <div class="container">
   <h2 class="text-primary font-weight-bold">出題者を選択</h2>
-
+<div class="card bg-light shadow p-4">
   <ul class="list-group">
     <% @participants.each do |user| %>
       <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -9,4 +9,8 @@
         </li>
     <% end %>
   </ul>
+</div>
+<div class="text-center mt-3 mb-3">
+  <%= link_to "戻る", "javascript:history.back()", class: "btn btn-secondary btn-lg" %>
+</div>
 </div>

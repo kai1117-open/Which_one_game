@@ -1,5 +1,6 @@
 <div class="container">
   <h2>ユーザー検索</h2>
+<div class="card bg-light shadow p-4">
   <%= form_with url: search_public_users_path, method: :get, local: true do |form| %>
     <div class="input-group mb-3">
       <%= form.text_field :query, placeholder: "ユーザー名,フレンドIDで検索", class: "form-control" %>
@@ -20,4 +21,8 @@
   <% else %>
     <p>該当するユーザーが見つかりませんでした。</p>
   <% end %>
+</div>
+</div>
+<div class="text-center mt-3 mb-3">
+<%= link_to "戻る", root_path, class: "btn btn-secondary btn-lg" %>
 </div>

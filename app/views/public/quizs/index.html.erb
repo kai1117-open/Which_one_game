@@ -1,6 +1,6 @@
 <div class="container">
   <h2>クイズ一覧</h2>
-
+<div class="card bg-light shadow p-4">
   <%= link_to "新規作成", new_public_quiz_path, class: "btn btn-primary mb-3" %>
 
   <table class="table table-striped">
@@ -23,4 +23,8 @@
       <% end %>
     </tbody>
   </table>
+</div>
+</div>
+<div class="text-center mt-3 mb-3">
+<%= link_to "戻る", root_path, class: "btn btn-secondary btn-lg" %>
 </div>

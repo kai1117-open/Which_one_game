@@ -1,6 +1,6 @@
 <div class="container">
   <h2 class="text-primary fw-bold">クイズ部屋トップ</h2>
-
+<div class="card bg-light shadow p-4">
   <div class="d-flex flex-wrap gap-3 mt-4">
     <%= link_to "部屋を作成", make_public_quiz_rooms_path, class: "btn btn-success btn-lg" %>
     <%= link_to "部屋に参加", join_public_quiz_rooms_path, class: "btn btn-primary btn-lg" %>
@@ -29,5 +29,9 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+</div>
+  <div class="text-center mt-3 mb-3">
+    <%= link_to "戻る", root_path, class: "btn btn-secondary btn-lg" %>
   </div>
 </div>

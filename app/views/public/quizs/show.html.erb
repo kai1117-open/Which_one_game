@@ -1,6 +1,6 @@
 <div class="container">
   <h2>クイズ詳細</h2>
-
+<div class="card bg-light shadow p-4">
   <div class="card">
     <div class="card-body">
       <h5 class="card-title"><%= @quiz.question_text %></h5>
@@ -11,10 +11,14 @@
     </div>
   </div>
 
-  <%= link_to "クイズ一覧へ戻る", public_quizs_path, class: "btn btn-secondary mt-3" %>
+
   
   <% if @quiz.creator == current_user %>
     <%= link_to "編集", edit_public_quiz_path(@quiz), class: "btn btn-primary mt-3" %>
     <%= link_to "削除", public_quiz_path(@quiz), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger mt-3" %>
   <% end %>
+</div>
+</div>
+<div class="text-center mt-3 mb-3">
+  <%= link_to "クイズ一覧へ戻る", public_quizs_path, class: "btn btn-secondary mt-3" %>
 </div>
