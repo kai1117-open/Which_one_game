@@ -5,7 +5,7 @@
     <% @participants.each do |user| %>
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <%= user.name %>
-        <%= link_to "選択", develop_set_public_quiz_rooms_path(id: @quiz_room.id, questioner_id: user.id), class: "btn btn-primary" %>
+        <%= link_to "選択", develop_set_public_quiz_rooms_path(id: @quiz_room.id, questioner_id: user.id), data: { turbo: false }, target: "_self", class: "btn btn-primary" %>
         </li>
     <% end %>
   </ul>

@@ -19,7 +19,7 @@
     <% @quizzes.each do |quiz| %>
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <%= quiz.question_text %>
-        <%= link_to "選択", quiz_set_public_quiz_rooms_path(id: @quiz_room.id, quiz_id: quiz.id), class: "btn btn-primary" %>
+        <%= link_to "選択", quiz_set_public_quiz_rooms_path(id: @quiz_room.id, quiz_id: quiz.id), data: { turbo: false }, target: "_self", class: "btn btn-primary" %>
       </li>
     <% end %>
   </ul>

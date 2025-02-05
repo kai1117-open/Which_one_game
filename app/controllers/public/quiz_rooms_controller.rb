@@ -4,6 +4,8 @@ class Public::QuizRoomsController < ApplicationController
 
   # クイズ部屋のトップページ（作成・参加ページのリンク）
   def top
+    @joined_user = QuizRoomAssociation.where(user_id: current_user.id)
+    @joined_quiz_rooms = @joined_user.map(&:quiz_room)
   end
 
   # 部屋の作成ページ

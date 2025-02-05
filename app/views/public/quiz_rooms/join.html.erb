@@ -16,7 +16,7 @@
       <% @quiz_rooms.each do |room| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= room.room_name %>
-          <%= link_to "参加する", public_room_association_index_path(quiz_room_id: room.id), method: :post, class: "btn btn-success" %>
+          <%= link_to "参加する", public_room_association_index_path(quiz_room_id: room.id), method: :post, data: { turbo: false }, class: "btn btn-success" %>
         </li>
       <% end %>
     </ul>
