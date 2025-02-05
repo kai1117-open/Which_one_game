@@ -1,39 +1,56 @@
 <div class="container">
   <h2 class="text-primary font-weight-bold"><%= @quiz_room.room_name %></h2>
 
-  <h4 class="mt-4">出題者:</h4>
-  <% if @quiz_room.questioner_id.present? %>
-    <p><%= User.find(@quiz_room.questioner_id).name %></p>
-  <% end %>
+  <div class="container mt-4">
+  <!-- 出題者のカード -->
+  <div class="card text-white bg-dark mb-4 shadow">
+    <div class="card-body">
+      <h4 class="card-title text-warning">🎤 出題者</h4>
+      <% if @quiz_room.questioner_id.present? %>
+        <p class="fs-1 fw-bold text-center text-uppercase fancy-text">
+          <%= User.find(@quiz_room.questioner_id).name %>
+        </p>
+      <% else %>
+        <p class="text-muted">まだ選ばれていません</p>
+      <% end %>
 
-  <% if @quiz_room.owner_id == current_user.id %>
-    <% if @quiz_room.questioner_id.present? %>
-      <%= link_to "出題者を変更", develop_select_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-warning" %>
-    <% else %>
-      <%= link_to "出題者を選ぶ", develop_select_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-warning" %>
-    <% end %>
-  <% end %>
+      <% if @quiz_room.owner_id == current_user.id %>
+        <%= link_to (@quiz_room.questioner_id.present? ? "出題者を変更" : "出題者を選ぶ"),
+            develop_select_public_quiz_rooms_path(id: @quiz_room.id), 
+            class: "btn btn-warning mt-2 w-100 fw-bold" %>
+      <% end %>
+    </div>
+  </div>
 
-  <h4 class="mt-4">選択されたクイズ:</h4>
-  <% if @quiz_room.quiz_id.present? %>
-    <p><%= Quiz.find(@quiz_room.quiz_id).question_text %></p>
-  <% end %>
+  <!-- 選択されたクイズのカード -->
+  <div class="card text-white bg-secondary mb-4 shadow">
+    <div class="card-body">
+      <h4 class="card-title text-warning">📝 選択されたクイズ</h4>
+      <% if @quiz_room.quiz_id.present? %>
+        <p class="fs-1 fw-bold text-center quiz-text">
+          <%= Quiz.find(@quiz_room.quiz_id).question_text %>
+        </p>
+      <% else %>
+        <p class="text-muted">クイズがまだ選ばれていません</p>
+      <% end %>
 
-  <% if @quiz_room.owner_id == current_user.id %>
-    <% if @quiz_room.quiz_id.present? %>
-      <%= link_to "クイズを変更", quiz_select_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-warning" %>
-    <% else %>
-      <%= link_to "クイズを選ぶ", quiz_select_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-warning" %>
-    <% end %>
-  <% end %>
+      <% if @quiz_room.owner_id == current_user.id %>
+        <%= link_to (@quiz_room.quiz_id.present? ? "クイズを変更" : "クイズを選ぶ"),
+            quiz_select_public_quiz_rooms_path(id: @quiz_room.id), 
+            class: "btn btn-warning mt-2 w-100 fw-bold" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 
   <% if @quiz_room.questioner_id == current_user.id %>
     <% if @quiz_room.quiz_id.present? %>
       <div class="text-center">
-        <button id="choice_1" class="btn btn-outline-primary choice-btn" data-user-id="<%= current_user.id %>">
+        <button id="choice_1" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
           <%= Quiz.find(@quiz_room.quiz_id).choice_1 %>
         </button>
-        <button id="choice_2" class="btn btn-outline-primary choice-btn" data-user-id="<%= current_user.id %>">
+        <button id="choice_2" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
           <%= Quiz.find(@quiz_room.quiz_id).choice_2 %>
         </button>
       </div>
@@ -43,8 +60,8 @@
   <% end %>
 
   <h4 class="mt-4">参加ユーザー:</h4>
-  <table class="table table-bordered">
-    <thead>
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark text-center">
       <tr>
         <th scope="col">名前</th>
         <th scope="col">選択肢 1</th>
@@ -60,22 +77,22 @@
               <span style="color: red;">出題者</span>
             <% end %>
           </td>
-          <td>
+          <td class="text-center">
           <% if @quiz_room.questioner_id == user.id %>
           <% else %>
             <% if @quiz_room.quiz_id.present? %>
-              <button id="choice_1_<%= user.id %>" class="btn btn-outline-primary choice-btn"
+              <button id="choice_1_<%= user.id %>" class="btn btn-outline-primary choice-btn btn-lg"
                       data-user-id="<%= user.id %>" <%= "disabled" if user.id != current_user.id %>>
                 <%= Quiz.find(@quiz_room.quiz_id).choice_1 %>
               </button>
             <% end %>
           <% end %>
           </td>
-          <td>
+          <td class="text-center">
           <% if @quiz_room.questioner_id == user.id %>
           <% else %>
             <% if @quiz_room.quiz_id.present? %>
-              <button id="choice_2_<%= user.id %>" class="btn btn-outline-primary choice-btn"
+              <button id="choice_2_<%= user.id %>" class="btn btn-outline-primary choice-btn btn-lg"
                       data-user-id="<%= user.id %>" <%= "disabled" if user.id != current_user.id %>>
                 <%= Quiz.find(@quiz_room.quiz_id).choice_2 %>
               </button>
@@ -88,10 +105,24 @@
   </table>
 
   <% if @quiz_room.owner_id == current_user.id %>
-    <%= button_to "部屋を解散", public_quiz_room_path(@quiz_room), 
-        method: :delete, data: { confirm: "本当に解散しますか？" }, 
-        class: "btn btn-danger mt-3" %>
-  <% end %>
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <!-- 左側: 部屋を解散ボタン -->
+    <div>
+      <%= button_to "部屋を解散", public_quiz_room_path(@quiz_room), 
+          method: :delete, data: { confirm: "本当に解散しますか？" }, 
+          class: "btn btn-danger btn-lg" %>
+    </div>
+    
+    <!-- 右側: ゲーム開始ボタン -->
+    <div>
+      <%= button_to "ゲーム開始", start_game_public_quiz_room_path(@quiz_room.id),
+          method: :post, data: { confirm: "本当に開始しますか？" }, 
+          class: "btn btn-success btn-lg" %>
+    </div>
+  </div>
+<% end %>
+
+
 </div>
 
 <script>

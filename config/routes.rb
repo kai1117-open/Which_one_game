@@ -35,8 +35,12 @@ Rails.application.routes.draw do
         get 'quiz_set'
         get 'develop_select'
         get 'develop_set'
-        post 'start_game'
       end
+
+      member do
+        post 'start_game' # ✅ IDを必須にする
+      end
+
     end
   
     # Quizs関連
