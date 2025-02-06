@@ -16,7 +16,7 @@
       <% @quizzes.each do |quiz| %>
         <tr>
           <td><%= quiz.question_text %></td>
-          <td><%= quiz.genre.name if quiz.genre %></td>
+          <td><%= quiz.genre.genre_name if quiz.genre %></td>
           <td><%= quiz.creator.name %></td>
           <td><%= link_to "詳細", public_quiz_path(quiz), class: "btn btn-info btn-sm" %></td>
         </tr>

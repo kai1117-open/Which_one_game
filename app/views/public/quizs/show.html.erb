@@ -4,7 +4,7 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title"><%= @quiz.question_text %></h5>
-      <p class="card-text"><strong>ジャンル:</strong> <%= @quiz.genre.name if @quiz.genre %></p>
+      <p class="card-text"><strong>ジャンル:</strong> <%= @quiz.genre.genre_name if @quiz.genre %></p>
       <p><strong>選択肢1:</strong> <%= @quiz.choice_1 %></p>
       <p><strong>選択肢2:</strong> <%= @quiz.choice_2 %></p>
       <p><strong>作成者:</strong> <%= @quiz.creator.name %></p>

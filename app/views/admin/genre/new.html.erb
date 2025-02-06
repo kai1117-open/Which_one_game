@@ -1,2 +1,17 @@
-<h1>Admin::Genre#new</h1>
-<p>Find me in app/views/admin/genre/new.html.erb</p>
+<div class="container mt-4">
+  <h2>新規ジャンル作成</h2>
+  <%= form_with model: @genre, url: admin_genre_index_path, local: true do |f| %>
+    <div class="mb-3">
+      <%= f.label :genre_name, "ジャンル名" %>
+      <%= f.text_field :genre_name, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :introduction, "説明" %>
+      <%= f.text_area :introduction, class: "form-control", rows: 4 %>
+    </div>
+
+    <%= f.submit "作成", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", admin_genre_index_path, class: "btn btn-secondary" %>
+  <% end %>
+</div>

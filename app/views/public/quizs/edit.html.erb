@@ -19,7 +19,7 @@
 
     <div class="mb-3">
       <%= form.label :genre_id, "ジャンル" %>
-      <%= form.collection_select :genre_id, Genre.all, :id, :name, { prompt: "選択してください" }, class: "form-control" %>
+      <%= form.collection_select :genre_id, Genre.all, :id, :genre_name, { prompt: "選択してください" }, class: "form-control" %>
     </div>
 
     <%= form.submit "更新", class: "btn btn-success w-100" %>

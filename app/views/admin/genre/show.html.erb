@@ -1,2 +1,8 @@
-<h1>Admin::Genre#show</h1>
-<p>Find me in app/views/admin/genre/show.html.erb</p>
+<div class="container mt-4">
+  <h2>ジャンル詳細</h2>
+  <p><strong>ジャンル名:</strong> <%= @genre.genre_name %></p>
+  <p><strong>説明:</strong> <%= @genre.introduction %></p>
+
+  <%= link_to "編集", edit_admin_genre_path(@genre), class: "btn btn-warning" %>
+  <%= link_to "一覧へ戻る", admin_genre_index_path, class: "btn btn-secondary" %>
+</div>

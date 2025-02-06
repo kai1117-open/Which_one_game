@@ -1,19 +1,22 @@
 <div class="container">
   <h2 class="text-primary font-weight-bold">クイズを選択</h2>
 <div class="card bg-light shadow p-4">
-  <%= form_with url: quiz_select_public_quiz_rooms_path, method: :get, local: true do |form| %>
-    <div class="mb-3">
-      <%= form.label :query, "問題文を検索" %>
-      <%= form.text_field :query, class: "form-control" %>
-    </div>
+    <%= form_with url: quiz_select_public_quiz_rooms_path, method: :get, local: true do |form| %>
+      <div class="mb-3">
+        <%= form.label :query, "問題文を検索" %>
+        <%= form.text_field :query, class: "form-control" %>
+      </div>
 
-    <div class="mb-3">
-      <%= form.label :genre_id, "ジャンルでフィルター" %>
-      <%= form.collection_select :genre_id, Genre.all, :id, :genre_name, { prompt: "すべて" }, class: "form-control" %>
-    </div>
+      <div class="mb-3">
+        <%= form.label :genre_id, "ジャンルでフィルター" %>
+        <%= form.collection_select :genre_id, Genre.all, :id, :genre_name, { prompt: "すべて" }, class: "form-control" %>
+      </div>
 
-    <%= form.submit "検索", class: "btn btn-primary w-100" %>
-  <% end %>
+      <%# QuizRoom の ID を hidden フィールドで渡す %>
+      <%= form.hidden_field :id, value: @quiz_room&.id %>
+
+      <%= form.submit "検索", class: "btn btn-primary w-100" %>
+    <% end %>
 
   <ul class="list-group mt-4">
     <% @quizzes.each do |quiz| %>
@@ -25,6 +28,6 @@
   </ul>
 </div>
 <div class="text-center mt-3 mb-3">
-  <%= link_to "戻る", "javascript:history.back()", class: "btn btn-secondary btn-lg" %>
+  <%= link_to "戻る", room_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-secondary btn-lg" %>
 </div>
 </div>

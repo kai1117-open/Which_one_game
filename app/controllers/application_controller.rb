@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_admin!, if: :admin_namespace?
 
   # 一般ユーザーの認証（管理者領域では適用しない）
-  before_action :authenticate_user!, unless: :admin_namespace?
+  before_action :authenticate_user!, unless: :admin_namespace?, unless: -> { controller_name == "home" && action_name == "index" }
 
   private
 
