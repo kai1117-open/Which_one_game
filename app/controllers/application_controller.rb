@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!, unless: :admin_namespace?, unless: -> { controller_name == "home" && action_name == "index" }
+
+  # 管理者用の認証を適用
+  before_action :authenticate_admin!, if: :admin_namespace?
+
+  # 一般ユーザーの認証（管理者領域では適用しない）
+  before_action :authenticate_user!, unless: :admin_namespace?
 
   private
 

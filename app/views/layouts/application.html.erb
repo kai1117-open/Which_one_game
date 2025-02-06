@@ -51,7 +51,11 @@
 <header class="bg-danger text-white py-3">
   <div class="container d-flex justify-content-between align-items-center">
     <div class="logo">
-      <%= link_to "Which_one_game", root_path, class: "text-white text-decoration-none h4 mb-0" %>
+      <% if admin_signed_in? %>
+        <%= link_to "Which_one_game(管理者)", admin_home_index_path, class: "text-white text-decoration-none h4 mb-0" %>
+      <% else %>
+        <%= link_to "Which_one_game", root_path, class: "text-white text-decoration-none h4 mb-0" %>
+      <% end %>
     </div>
     <nav>
       <% if user_signed_in? %>
@@ -61,6 +65,14 @@
           <li class="nav-item"><%= link_to "ゲーム開始", top_public_quiz_rooms_path, class: "nav-link text-white" %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-white" %></li>
         </ul>
+      <% elsif admin_signed_in? %>
+      <ul class="nav">
+          <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "部屋一覧", admin_quiz_rooms_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "クイズ一覧", admin_quizs_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "ジャンル一覧", admin_genre_index_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-white" %></li>
+       </ul>
       <% else %>
         <ul class="nav">
           <li class="nav-item"><%= link_to "新規会員登録", new_user_registration_path, class: "nav-link text-white" %></li>
