@@ -1,2 +1,9 @@
-<h1>Admin::Quizs#show</h1>
-<p>Find me in app/views/admin/quizs/show.html.erb</p>
+<h1>クイズ詳細</h1>
+<p><strong>問題文:</strong> <%= @quiz.question_text %></p>
+<p><strong>ジャンル:</strong> <%= @quiz.genre.genre_name if @quiz.genre %></p>
+<p><strong>作成者:</strong> <%= @quiz.creator.name %></p>
+<p><strong>選択肢1:</strong> <%= @quiz.choice_1 %></p>
+<p><strong>選択肢2:</strong> <%= @quiz.choice_2 %></p>
+
+<%= link_to '編集', edit_admin_quiz_path(@quiz), class: 'btn btn-warning' %>
+<%= link_to '一覧へ戻る', admin_quizs_path, class: 'btn btn-secondary' %>

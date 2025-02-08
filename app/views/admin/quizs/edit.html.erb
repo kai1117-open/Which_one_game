@@ -1,2 +1,21 @@
-<h1>Admin::Quizs#edit</h1>
-<p>Find me in app/views/admin/quizs/edit.html.erb</p>
+<h1>クイズ編集</h1>
+<%= form_with model: @quiz, url: admin_quiz_path(@quiz), method: :patch, local: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :question_text, "問題文" %>
+    <%= f.text_area :question_text, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :choice_1, "選択肢1" %>
+    <%= f.text_field :choice_1, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :choice_2, "選択肢2" %>
+    <%= f.text_field :choice_2, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :genre_id, "ジャンル" %>
+    <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, { prompt: "選択してください" }, class: "form-control" %>
+  </div>
+  <%= f.submit "更新する", class: 'btn btn-primary' %>
+  <%= link_to 'キャンセル', admin_quiz_path(@quiz), class: 'btn btn-secondary' %>
+<% end %>
