@@ -1,2 +1,62 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container d-flex justify-content-center mt-5">
+  <div class="card shadow-lg p-4 text-center border-primary" style="width: 600px; max-width: 100%; background: linear-gradient(135deg, #1e1e2e, #3a3a5e); color: white; border-radius: 15px;">
+    <div class="card-body">
+      <h2 class="card-title" style="border-bottom: 2px solid #ffcc00; padding-bottom: 10px;">
+        <i class="bi bi-person-circle"></i> <%= @user.name %> 
+      </h2>
+      <% if @user == current_user %>
+      <div class="card bg-dark text-white p-3 mt-3" style="border-left: 5px solid #ffcc00; border-radius: 10px;">
+        <h5><i class="bi bi-envelope"></i> メール</h5>
+        <p><%= @user.email %></p>
+      </div>
+      <% end %>
+
+      <div class="card bg-dark text-white p-3 mt-3" style="border-left: 5px solid #ffcc00; border-radius: 10px;">
+        <h5><i class="bi bi-chat-text"></i> フレンドID</h5>
+        <% if @user.friend_id.present? %>
+          <p id="friendId" class="copy-text" onclick="copyToClipboard()" style="cursor: pointer; text-decoration: underline; color: #ffcc00;">  
+            <i class="bi bi-paperclip"></i> <%= @user.friend_id %>  
+          </p>
+        <% else %>
+          <p>未設定</p>
+        <% end %>
+      </div>
+
+      <div class="card bg-dark text-white p-3 mt-3" style="border-left: 5px solid #ffcc00; border-radius: 10px;">
+        <h5><i class="bi bi-chat-text"></i> 自己紹介</h5>
+        <p><%= @user.introduction.presence || '未設定' %></p>
+      </div>
+
+
+      
+
+      
+      <% if @user == current_user %>
+        <%= link_to "プロフィール編集", edit_admin_user_path(@user), class: "btn btn-warning mt-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="text-center mt-3 mb-3">
+  <%= link_to "戻る", "javascript:history.back()", class: "btn btn-secondary btn-lg" %>
+</div>
+
+<script>
+  function copyToClipboard() {
+    var textElement = document.getElementById("friendId");
+    if (!textElement) return;
+    var text = textElement.innerText.trim();
+
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        alert("コピーしました: " + text);
+      })
+      .catch(err => {
+        console.error("コピーに失敗しました", err);
+      });
+  }
+</script>
+
+
+<!-- Bootstrap Icons を利用するためのCDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
