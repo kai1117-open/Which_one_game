@@ -4,12 +4,12 @@
       <h2 class="card-title" style="border-bottom: 2px solid #ffcc00; padding-bottom: 10px;">
         <i class="bi bi-person-circle"></i> <%= @user.name %> 
       </h2>
-      <% if @user == current_user %>
+
       <div class="card bg-dark text-white p-3 mt-3" style="border-left: 5px solid #ffcc00; border-radius: 10px;">
         <h5><i class="bi bi-envelope"></i> メール</h5>
         <p><%= @user.email %></p>
       </div>
-      <% end %>
+
 
       <div class="card bg-dark text-white p-3 mt-3" style="border-left: 5px solid #ffcc00; border-radius: 10px;">
         <h5><i class="bi bi-chat-text"></i> フレンドID</h5>
@@ -31,14 +31,14 @@
       
 
       
-      <% if @user == current_user %>
+
         <%= link_to "プロフィール編集", edit_admin_user_path(@user), class: "btn btn-warning mt-3" %>
-      <% end %>
+
     </div>
   </div>
 </div>
 <div class="text-center mt-3 mb-3">
-  <%= link_to "戻る", "javascript:history.back()", class: "btn btn-secondary btn-lg" %>
+  <%= link_to "戻る", admin_users_path, class: "btn btn-secondary btn-lg" %>
 </div>
 
 <script>

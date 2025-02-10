@@ -9,6 +9,10 @@
   <p><strong>ステータス:</strong> <%= @quiz_room.room_status %></p>
 
   <%= link_to '編集', edit_admin_quiz_room_path(@quiz_room), class: 'btn btn-warning' %>
-  <%= link_to '一覧へ戻る', admin_quiz_rooms_path, class: 'btn btn-secondary' %>
   </div>
+
+  <div class="text-center mt-3 mb-3">
+    <%= link_to "戻る", admin_quiz_rooms_path, class: "btn btn-secondary btn-lg" %>
+  </div>
+
 </div>

@@ -11,7 +11,9 @@
       <%= f.number_field :room_status, class: 'form-control' %>
     </div>
     <%= f.submit "更新する", class: 'btn btn-primary' %>
-    <%= link_to 'キャンセル', admin_quiz_room_path(@quiz_room), class: 'btn btn-secondary' %>
   <% end %>
+  </div>
+  <div class="text-center mt-3 mb-3">
+    <%= link_to "戻る", "javascript:history.back()", class: "btn btn-secondary btn-lg" %>
   </div>
 </div>
