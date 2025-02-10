@@ -1,16 +1,20 @@
+<div class="container mt-4">
 <h1>ユーザー編集</h1>
-<%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
-  <div class="mb-3">
-    <%= f.label :name, '名前' %>
-    <%= f.text_field :name, class: 'form-control' %>
+  <div class="card bg-light shadow p-4">
+  <%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
+    <div class="mb-3">
+      <%= f.label :name, '名前' %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :email, 'メールアドレス' %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :self_introduction, '自己紹介' %>
+      <%= f.text_area :self_introduction, class: 'form-control' %>
+    </div>
+    <%= f.submit '更新', class: 'btn btn-success' %>
+  <% end %>
   </div>
-  <div class="mb-3">
-    <%= f.label :email, 'メールアドレス' %>
-    <%= f.email_field :email, class: 'form-control' %>
-  </div>
-  <div class="mb-3">
-    <%= f.label :self_introduction, '自己紹介' %>
-    <%= f.text_area :self_introduction, class: 'form-control' %>
-  </div>
-  <%= f.submit '更新', class: 'btn btn-success' %>
-<% end %>
+</div>

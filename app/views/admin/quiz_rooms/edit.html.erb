@@ -1,13 +1,17 @@
+<div class="container mt-4">
 <h1>クイズ部屋編集</h1>
-<%= form_with model: @quiz_room, url: admin_quiz_room_path(@quiz_room), method: :patch, local: true do |f| %>
-  <div class="mb-3">
-    <%= f.label :room_name, "部屋名" %>
-    <%= f.text_field :room_name, class: 'form-control' %>
+  <div class="card bg-light shadow p-4">
+  <%= form_with model: @quiz_room, url: admin_quiz_room_path(@quiz_room), method: :patch, local: true do |f| %>
+    <div class="mb-3">
+      <%= f.label :room_name, "部屋名" %>
+      <%= f.text_field :room_name, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :room_status, "ステータス" %>
+      <%= f.number_field :room_status, class: 'form-control' %>
+    </div>
+    <%= f.submit "更新する", class: 'btn btn-primary' %>
+    <%= link_to 'キャンセル', admin_quiz_room_path(@quiz_room), class: 'btn btn-secondary' %>
+  <% end %>
   </div>
-  <div class="mb-3">
-    <%= f.label :room_status, "ステータス" %>
-    <%= f.number_field :room_status, class: 'form-control' %>
-  </div>
-  <%= f.submit "更新する", class: 'btn btn-primary' %>
-  <%= link_to 'キャンセル', admin_quiz_room_path(@quiz_room), class: 'btn btn-secondary' %>
-<% end %>
+</div>

@@ -1,27 +1,31 @@
+<div class="container mt-4">
 <h1>クイズ一覧</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>問題文</th>
-      <th>ジャンル</th>
-      <th>作成者</th>
-      <th>アクション</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @quizs.each do |quiz| %>
+  <div class="card bg-light shadow p-4">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= quiz.id %></td>
-        <td><%= quiz.question_text %></td>
-        <td><%= quiz.genre.genre_name if quiz.genre %></td>
-        <td><%= quiz.creator.name %></td>
-        <td>
-          <%= link_to '詳細', admin_quiz_path(quiz), class: 'btn btn-primary btn-sm' %>
-          <%= link_to '編集', edit_admin_quiz_path(quiz), class: 'btn btn-warning btn-sm' %>
-          <%= link_to '削除', admin_quiz_path(quiz), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %>
-        </td>
+        <th>ID</th>
+        <th>問題文</th>
+        <th>ジャンル</th>
+        <th>作成者</th>
+        <th>アクション</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @quizs.each do |quiz| %>
+        <tr>
+          <td><%= quiz.id %></td>
+          <td><%= quiz.question_text %></td>
+          <td><%= quiz.genre.genre_name if quiz.genre %></td>
+          <td><%= quiz.creator.name %></td>
+          <td>
+            <%= link_to '詳細', admin_quiz_path(quiz), class: 'btn btn-primary btn-sm' %>
+            <%= link_to '編集', edit_admin_quiz_path(quiz), class: 'btn btn-warning btn-sm' %>
+            <%= link_to '削除', admin_quiz_path(quiz), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 <div class="container mt-4">
   <h2>新規ジャンル作成</h2>
+<div class="card bg-light shadow p-4">
   <%= form_with model: @genre, url: admin_genre_index_path, local: true do |f| %>
     <div class="mb-3">
       <%= f.label :genre_name, "ジャンル名" %>
@@ -14,4 +15,5 @@
     <%= f.submit "作成", class: "btn btn-primary" %>
     <%= link_to "キャンセル", admin_genre_index_path, class: "btn btn-secondary" %>
   <% end %>
+</div>
 </div>

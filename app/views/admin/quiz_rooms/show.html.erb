@@ -1,10 +1,14 @@
+<div class="container mt-4">
 <h1>クイズ部屋詳細</h1>
-<p><strong>ID:</strong> <%= @quiz_room.id %></p>
-<p><strong>部屋名:</strong> <%= @quiz_room.room_name %></p>
-<p><strong>オーナー:</strong> <%= @quiz_room.owner_id %></p>
-<p><strong>現在の出題者:</strong> <%= @quiz_room.questioner_id %></p>
-<p><strong>選択中のクイズ:</strong> <%= @quiz_room.quiz_id %></p>
-<p><strong>ステータス:</strong> <%= @quiz_room.room_status %></p>
+  <div class="card bg-light shadow p-4">
+  <p><strong>ID:</strong> <%= @quiz_room.id %></p>
+  <p><strong>部屋名:</strong> <%= @quiz_room.room_name %></p>
+  <p><strong>オーナー:</strong> <%= @quiz_room.owner_id %></p>
+  <p><strong>現在の出題者:</strong> <%= @quiz_room.questioner_id %></p>
+  <p><strong>選択中のクイズ:</strong> <%= @quiz_room.quiz_id %></p>
+  <p><strong>ステータス:</strong> <%= @quiz_room.room_status %></p>
 
-<%= link_to '編集', edit_admin_quiz_room_path(@quiz_room), class: 'btn btn-warning' %>
-<%= link_to '一覧へ戻る', admin_quiz_rooms_path, class: 'btn btn-secondary' %>
+  <%= link_to '編集', edit_admin_quiz_room_path(@quiz_room), class: 'btn btn-warning' %>
+  <%= link_to '一覧へ戻る', admin_quiz_rooms_path, class: 'btn btn-secondary' %>
+  </div>
+</div>
