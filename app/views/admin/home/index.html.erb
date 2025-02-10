@@ -4,24 +4,52 @@
   <div class="row">
     <div class="col-md-6">
       <div class="card border-primary mb-3">
-        <div class="card-header bg-primary text-white">クイズ管理</div>
+        <div class="card-header bg-danger text-white">ユーザー一覧</div>
         <div class="card-body">
-          <p class="card-text">登録されたクイズを確認・編集・削除できます。</p>
-          <%= link_to "クイズ管理ページへ", admin_quizs_path, class: "btn btn-primary" %>
+          <p class="card-text">登録されたユーザーを確認・編集・削除できます。</p>
+          <div class="text-center mt-3 mb-3">
+          <%= link_to "ユーザー一覧ページへ", admin_users_path, class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="col-md-6">
-      <div class="card border-success mb-3">
-        <div class="card-header bg-success text-white">ユーザー管理</div>
+      <div class="card border-primary mb-3">
+        <div class="card-header bg-danger text-white">クイズ部屋一覧</div>
         <div class="card-body">
-          <p class="card-text">登録ユーザーの管理ができます。</p>
-          <%= link_to "ユーザー管理ページへ", admin_users_path, class: "btn btn-success" %>
+          <p class="card-text">クイズ部屋の確認・編集・削除ができます。</p>
+          <div class="text-center mt-3 mb-3">
+          <%= link_to "クイズ部屋一覧ページへ", admin_quiz_rooms_path, class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card border-primary mb-3">
+        <div class="card-header bg-danger text-white">クイズ一覧</div>
+        <div class="card-body">
+          <p class="card-text">登録されたクイズを確認・編集・削除できます。</p>
+          <div class="text-center mt-3 mb-3">
+          <%= link_to "クイズ一覧ページへ", admin_quizs_path, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="col-md-6">
+      <div class="card border-primary mb-3">
+        <div class="card-header bg-danger text-white">ジャンル一覧</div>
+        <div class="card-body">
+          <p class="card-text">ジャンルの確認・編集・削除・作成ができます。</p>
+          <div class="text-center mt-3 mb-3">
+          <%= link_to "ジャンル一覧ページへ", admin_genre_index_path, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
