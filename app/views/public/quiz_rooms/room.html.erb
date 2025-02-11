@@ -1,4 +1,5 @@
 <div class="container">
+
   <h2 class="text-primary font-weight-bold text-center"><%= @quiz_room.room_name %></h2>
 <div class="card bg-light shadow p-4">
   <div class="container mt-4">
@@ -44,20 +45,37 @@
 </div>
 
 
-  <% if @quiz_room.questioner_id == current_user.id %>
-    <% if @quiz_room.quiz_id.present? %>
-      <div class="text-center">
-        <button id="choice_1" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
-          <%= Quiz.find(@quiz_room.quiz_id).choice_1 %>
-        </button>
-        <button id="choice_2" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
-          <%= Quiz.find(@quiz_room.quiz_id).choice_2 %>
-        </button>
+
+
+  <% if @quiz_room.quiz_id.present? %>
+    <% @quiz = Quiz.find(@quiz_room.quiz_id) %>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+            出題者用選択肢
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse mb-3 mt-3">
+<% if @quiz_room.questioner_id == current_user.id %>
+          <div class="text-center">
+            <button id="choice_1" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
+              <%= @quiz.choice_1 %>
+            </button>
+            <button id="choice_2" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
+              <%= @quiz.choice_2 %>
+            </button>
+          </div>
+<% end %>
+        </div>
       </div>
-    <% else %>
-      <h5 class="mt-4 text-center">クイズ未選択</h5>
-    <% end %>
+    </div>
+  <% else %>
+    <h5 class="mt-4 text-center">クイズ未選択</h5>
   <% end %>
+
+
+
 
   <h4 class="mt-4">参加ユーザー:</h4>
   <table class="table table-striped table-bordered">
@@ -126,6 +144,7 @@
     <%= link_to "戻る", top_public_quiz_rooms_path, class: "btn btn-secondary btn-lg" %>
   </div>
 </div>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
