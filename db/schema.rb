@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_02_082740) do
+ActiveRecord::Schema.define(version: 2025_02_12_050943) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2025_02_02_082740) do
     t.integer "questioner_id"
     t.integer "quiz_id"
     t.integer "room_status", default: 0, null: false
+    t.string "selected_choice", default: ""
     t.index ["owner_id"], name: "index_quiz_rooms_on_owner_id"
   end
 

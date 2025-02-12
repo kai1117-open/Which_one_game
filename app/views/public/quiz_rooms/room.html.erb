@@ -60,9 +60,11 @@
 <% if @quiz_room.questioner_id == current_user.id %>
           <div class="text-center">
             <button id="choice_1" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
+            <%= button_to "選択肢1を選択", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_1"), method: :patch, class: "btn btn-primary" %>
               <%= @quiz.choice_1 %>
             </button>
             <button id="choice_2" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
+            <%= button_to "選択肢2を選択", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_2"), method: :patch, class: "btn btn-secondary" %>
               <%= @quiz.choice_2 %>
             </button>
           </div>

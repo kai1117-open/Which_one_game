@@ -97,6 +97,19 @@ class Public::QuizRoomsController < ApplicationController
     end
   end
 
+  def update_selected_choice
+    @quiz_room = QuizRoom.find(params[:id])
+    
+    if ["choice_1", "choice_2"].include?(params[:selected_choice])
+      @quiz_room.update(selected_choice: params[:selected_choice])
+      flash[:notice] = "選択肢が更新されました。"
+    else
+      flash[:alert] = "無効な選択肢です。"
+    end
+
+    redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), notice: "ゲームを開始しました！"
+  end
+
   private
 
   def set_quiz_room
