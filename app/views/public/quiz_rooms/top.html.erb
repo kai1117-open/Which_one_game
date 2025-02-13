@@ -23,7 +23,11 @@
             <td class="align-middle"><%= quiz_room.owner.name %></td>
             <td class="align-middle"><%= quiz_room.created_at.strftime("%Y-%m-%d") %></td>
             <td class="text-center align-middle">
+            <% if quiz_room.waiting? %>
               <%= link_to "部屋に入る", room_public_quiz_rooms_path(id: quiz_room.id), data: { turbo: false }, target: "_self", class: "btn btn-primary btn-sm" %>
+            <% else %>
+              ゲーム中です
+            <% end %>
             </td>
           </tr>
         <% end %>

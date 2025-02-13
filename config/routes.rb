@@ -39,6 +39,8 @@ Rails.application.routes.draw do
 
       member do
         post 'start_game' # ✅ IDを必須にする
+        post 'waiting_game'
+        post 'interval_game'
         patch :update_selected_choice
       end
 

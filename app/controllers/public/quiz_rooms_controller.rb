@@ -1,6 +1,6 @@
 class Public::QuizRoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz_room, only: [:room, :quiz_select, :quiz_set, :develop_select, :develop_set, :destroy, :start_game]
+  before_action :set_quiz_room, only: [:room, :quiz_select, :quiz_set, :develop_select, :develop_set, :destroy, :start_game, :waiting_game, :interval_game]
 
   # クイズ部屋のトップページ（作成・参加ページのリンク）
   def top
@@ -94,6 +94,25 @@ class Public::QuizRoomsController < ApplicationController
       redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), notice: "ゲームを開始しました！"
     else
       redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), alert: "ゲーム開始の権限がありません。"
+    end
+  end
+
+  def waiting_game
+    if @quiz_room.owner_id == current_user.id
+      @quiz_room.update(room_status: :waiting)
+      redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), notice: "ゲームを待機中にしました！"
+    else
+      redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), alert: "権限がありません。"
+    end
+  end
+
+  
+  def interval_game
+    if @quiz_room.questioner_id == current_user.id
+      @quiz_room.update(room_status: 2)
+      redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), notice: "回答発表です"
+    else
+      redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), alert: "権限がありません。"
     end
   end
 
