@@ -35,7 +35,7 @@
         <p class="text-muted">クイズがまだ選ばれていません</p>
       <% end %>
 
-      <% if @quiz_room.owner_id == current_user.id %>
+      <% if @quiz_room.questioner_id == current_user.id %>
         <%= link_to (@quiz_room.quiz_id.present? ? "クイズを変更" : "クイズを選ぶ"),
             quiz_select_public_quiz_rooms_path(id: @quiz_room.id), 
             class: "btn btn-warning mt-2 w-100 fw-bold" %>
@@ -65,17 +65,28 @@
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse mb-3 mt-3">
         <% if @quiz_room.questioner_id == current_user.id %>
-          <div class="text-center">
-            <%= button_to "選択肢1で決定する", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_1"), method: :patch, class: "btn btn-danger mb-2" %>
-            <button id="choice_1" class="btn btn-outline-primary btn-lg" data-user-id="<%= current_user.id %>">
-              <%= @quiz.choice_1 %>
-            </button>
+          <div class="text-center d-flex justify-content-center">
 
-            <%= button_to "選択肢2で決定する", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_2"), method: :patch, class: "btn btn-danger mb-2" %>
-            <button id="choice_2" class="btn btn-outline-primary btn-lg" data-user-id="<%= current_user.id %>">
+              <button id="choice_1" class="btn btn-outline-primary w-50 btn-lg" data-user-id="<%= current_user.id %>">
+              <%= button_to "選択肢1で決定する", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_1"), method: :patch, class: "btn btn-danger" %>
+                <%= @quiz.choice_1 %>
+              </button>
+
+            <button id="choice_2" class="btn btn-outline-primary w-50 btn-lg" data-user-id="<%= current_user.id %>">
+            <%= button_to "選択肢2で決定する", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_2"), method: :patch, class: "btn btn-danger" %>
               <%= @quiz.choice_2 %>
             </button>
+
           </div>
+        <div class="text-center mt-3 mb-3">
+        <p>選んだ選択肢: 
+          <% if @quiz_room.selected_choice.present? %>
+            <strong><%= @quiz_room.quiz.send(@quiz_room.selected_choice) %></strong>
+          <% else %>
+            <span class="text-muted">まだ選ばれていません</span>
+          <% end %>
+        </p>
+        </div>
         <% else %>
           <p>選ばれた選択肢: 
             <% if @quiz_room.selected_choice.present? %>
