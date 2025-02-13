@@ -49,9 +49,11 @@
 
 <div class="text-center mb-3">
 <% if @quiz_room.questioner_id == current_user.id %>
+<% if @quiz_room.selected_choice.present? %>
       <%= button_to "解答発表する", interval_game_public_quiz_room_path(@quiz_room.id),
           method: :post, data: { confirm: "解答発表しますか？" }, 
           class: "btn btn-success " %>
+<% end %>
 <% end %>
 </div>
 

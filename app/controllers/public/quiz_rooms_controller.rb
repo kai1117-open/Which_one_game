@@ -71,6 +71,8 @@ class Public::QuizRoomsController < ApplicationController
   def quiz_set
     if params[:quiz_id].present?
       @quiz_room.update(quiz_id: params[:quiz_id])
+      @quiz_room.update(room_status: :in_progress)
+      @quiz_room.update(selected_choice: nil)
       redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), notice: "クイズが設定されました。"
     else
       redirect_to quiz_select_public_quiz_rooms_path(id: @quiz_room.id), alert: "クイズを選択してください。"
