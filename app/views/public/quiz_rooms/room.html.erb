@@ -46,29 +46,41 @@
 
 
 
-
+<!-- 出題者用選択肢 -->
   <% if @quiz_room.quiz_id.present? %>
     <% @quiz = Quiz.find(@quiz_room.quiz_id) %>
     <div class="accordion" id="accordionExample">
       <div class="accordion-item">
+
         <h2 class="accordion-header">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
             出題者用選択肢
           </button>
         </h2>
+
         <div id="collapseOne" class="accordion-collapse collapse mb-3 mt-3">
-<% if @quiz_room.questioner_id == current_user.id %>
-          <div class="text-center">
-            <button id="choice_1" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
-            <%= button_to "選択肢1で決定する", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_1"), method: :patch, class: "btn btn-primary" %>
-              <%= @quiz.choice_1 %>
-            </button>
-            <button id="choice_2" class="btn btn-outline-primary choice-btn btn-lg" data-user-id="<%= current_user.id %>">
-            <%= button_to "選択肢2で決定する", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_2"), method: :patch, class: "btn btn-primary" %>
-              <%= @quiz.choice_2 %>
-            </button>
-          </div>
-<% end %>
+
+          <% if @quiz_room.questioner_id == current_user.id %>
+            <div class="text-center">
+              <button id="choice_1" class="btn btn-outline-primary  btn-lg" data-user-id="<%= current_user.id %>">
+              <%= button_to "選択肢1で決定する", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_1"), method: :patch, class: "btn btn-danger" %>
+                <%= @quiz.choice_1 %>
+              </button>
+              <button id="choice_2" class="btn btn-outline-primary  btn-lg" data-user-id="<%= current_user.id %>">
+              <%= button_to "選択肢2で決定する", update_selected_choice_public_quiz_room_path(@quiz_room, selected_choice: "choice_2"), method: :patch, class: "btn btn-danger" %>
+                <%= @quiz.choice_2 %>
+              </button>
+            </div>
+          <% else %>
+            <p>選ばれた選択肢: 
+              <% if @quiz_room.selected_choice.present? %>
+                <strong><%= @quiz_room.quiz.send(@quiz_room.selected_choice) %></strong>
+              <% else %>
+                <span class="text-muted">まだ選ばれていません</span>
+              <% end %>
+            </p>
+          <% end %>
+
         </div>
       </div>
     </div>
@@ -142,6 +154,7 @@
   </div>
 <% end %>
 </div>
+<!-- 真ん中: 戻るボタン -->
   <div class="text-center mt-3 mb-3">
     <%= link_to "戻る", top_public_quiz_rooms_path, class: "btn btn-secondary btn-lg" %>
   </div>
