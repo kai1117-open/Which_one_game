@@ -8,4 +8,12 @@ class QuizRoom < ApplicationRecord
   
   validates :selected_choice, inclusion: { in: [nil, "choice_1", "choice_2"], message: "must be either 'choice_1' or 'choice_2'" }
   enum room_status: { waiting: 0, in_progress: 1, finished: 2 } # ルームステータス
+
+
+  # 指定されたユーザーが選択肢を選んだか確認するメソッド
+  def user_selected_choice?(user_id)
+    # 選択肢のボタンを押したユーザーが `selected_choice` に保存されているか確認
+    selected_choice.present? && User.find(user_id).present?
+  end
+
 end
