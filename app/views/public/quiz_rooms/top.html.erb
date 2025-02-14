@@ -26,7 +26,11 @@
             <% if quiz_room.waiting? %>
               <%= link_to "部屋に入る", room_public_quiz_rooms_path(id: quiz_room.id), data: { turbo: false }, target: "_self", class: "btn btn-primary btn-sm" %>
             <% else %>
-              ゲーム中です
+              <% if quiz_room.owner_id == current_user.id %>
+                <%= link_to "ゲーム進行中", room_public_quiz_rooms_path(id: quiz_room.id), data: { turbo: false }, target: "_self", class: "btn btn-warning" %>
+              <% else %>
+                ゲーム中です。オーナーが待機フェーズに変更したら入れます
+              <% end %>
             <% end %>
             </td>
           </tr>

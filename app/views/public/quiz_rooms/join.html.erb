@@ -16,7 +16,17 @@
         <% @quiz_rooms.each do |room| %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <%= room.room_name %>
+            <% if room.waiting? %>
             <%= link_to "参加する", public_room_association_index_path(quiz_room_id: room.id), method: :post, data: { turbo: false }, class: "btn btn-success" %>
+            <% else %>
+            <div class = "text-end">
+              <% if room.owner_id == current_user.id %>
+                <%= link_to "ゲーム進行中", public_room_association_index_path(quiz_room_id: room.id), method: :post, data: { turbo: false }, class: "btn btn-warning" %>
+              <% else %>
+                ゲーム中です。オーナーが待機フェーズに変更したら入れます
+              <% end %>
+            </div>
+            <% end %>
           </li>
         <% end %>
       </ul>
