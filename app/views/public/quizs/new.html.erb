@@ -3,8 +3,8 @@
 <div class="card bg-light shadow p-4">
   <%= form_with model: @quiz, url: public_quizs_path, local: true do |form| %>
     <div class="mb-3">
-      <%= form.label :question_text, "問題文" %>
-      <%= form.text_area :question_text, class: "form-control" %>
+      <%= form.label :question_text, "お題" %>
+      <%= form.text_area :question_text, class: "form-control", placeholder: "ワンフレーズのセリフを入力してください" %>
     </div>
 
     <div class="mb-3">

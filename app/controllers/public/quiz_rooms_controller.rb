@@ -50,13 +50,13 @@ class Public::QuizRoomsController < ApplicationController
   def develop_set
     if params[:questioner_id].present?
       @quiz_room.update(questioner_id: params[:questioner_id])
+      @quiz_room.update(selected_choice: nil)
       redirect_to room_public_quiz_rooms_path(id: @quiz_room.id), notice: "出題者が設定されました。"
     else
       redirect_to quiz_select_public_quiz_rooms_path(id: @quiz_room.id), alert: "出題者を選択してください。"
     end
   end
 
-  # クイズの選択画面
   def quiz_select
     @quizzes = Quiz.all
     if params[:query].present?
@@ -65,7 +65,12 @@ class Public::QuizRoomsController < ApplicationController
     if params[:genre_id].present?
       @quizzes = @quizzes.where(genre_id: params[:genre_id])
     end
+    if params[:creator_id].present?
+      @quizzes = @quizzes.where(creator_id: params[:creator_id])
+    end
   end
+  
+  
 
   # クイズを設定
   def quiz_set

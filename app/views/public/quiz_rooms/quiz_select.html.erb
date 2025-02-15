@@ -1,6 +1,7 @@
 <div class="container">
   <h2 class="text-primary font-weight-bold">クイズを選択</h2>
-<div class="card bg-light shadow p-4">
+  
+  <div class="card bg-light shadow p-4">
     <%= form_with url: quiz_select_public_quiz_rooms_path, method: :get, local: true do |form| %>
       <div class="mb-3">
         <%= form.label :query, "問題文を検索" %>
@@ -18,16 +19,24 @@
       <%= form.submit "検索", class: "btn btn-primary w-100" %>
     <% end %>
 
-  <ul class="list-group mt-4">
-    <% @quizzes.each do |quiz| %>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <%= quiz.question_text %>
-        <%= link_to "選択", quiz_set_public_quiz_rooms_path(id: @quiz_room.id, quiz_id: quiz.id), data: { turbo: false }, target: "_self", class: "btn btn-primary" %>
-      </li>
-    <% end %>
-  </ul>
-</div>
-<div class="text-center mt-3 mb-3">
-  <%= link_to "戻る", room_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-secondary btn-lg" %>
-</div>
+    <!-- 特定の制作者でフィルタリングするボタン -->
+    <div class="mt-5 text-center">
+      <div class="d-flex justify-content-center gap-2">
+        <%= link_to "運営作成のクイズ", quiz_select_public_quiz_rooms_path(id: @quiz_room.id, creator_id: 1), class: "btn btn-info" %>
+      </div>
+    </div>
+
+    <ul class="list-group mt-4">
+      <% @quizzes.each do |quiz| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= quiz.question_text %> <small>(制作者: <%= quiz.creator.name %>)</small>
+          <%= link_to "選択", quiz_set_public_quiz_rooms_path(id: @quiz_room.id, quiz_id: quiz.id), data: { turbo: false }, target: "_self", class: "btn btn-primary" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="text-center mt-3 mb-3">
+    <%= link_to "戻る", room_public_quiz_rooms_path(id: @quiz_room.id), class: "btn btn-secondary btn-lg" %>
+  </div>
 </div>

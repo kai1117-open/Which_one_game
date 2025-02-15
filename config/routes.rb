@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'how_to_play', to: 'pages#how_to_play'
+  
     namespace :admin do
       # admin/home
       get 'home/index', to: 'home#index'

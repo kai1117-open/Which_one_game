@@ -1,0 +1,45 @@
+
+
+
+<div class="container">
+  <h2 class="text-primary font-weight-bold text-center mt-4">遊び方ガイド</h2>
+  
+  <!-- ステップ説明 -->
+  <div class="card bg-light shadow-sm p-4 mb-4">
+    <h3 class="text-dark font-weight-bold">1. ゲーム開始</h3>
+    <p>参加者が全員そろったら、画面右下の <strong>「ゲーム開始」</strong> ボタンを押してください。</p>
+    <img src="<%= asset_path('step1_start.png') %>" class="img-fluid mx-auto d-block my-3 border border-primary rounded" alt="ゲーム開始ボタン">
+
+    <h3 class="text-dark font-weight-bold">2. 出題者の選択</h3>
+    <p>オーナーは参加者の中から出題者を選びます。選ばれた出題者は <strong>リロード</strong> ボタンを押してください。</p>
+    <img src="<%= asset_path('step2_select_presenter.png') %>" class="img-fluid mx-auto d-block my-3 border border-primary rounded" alt="出題者選択">
+
+    <h3 class="text-dark font-weight-bold">3. クイズの選択</h3>
+    <p>出題者はリストから <strong>クイズを選択</strong> してください。</p>
+    <img src="<%= asset_path('step3_choose_quiz.png') %>" class="img-fluid mx-auto d-block my-3 border border-primary rounded" alt="クイズ選択">
+
+    <h3 class="text-dark font-weight-bold">4. 問題の確認</h3>
+    <p>全員が <strong>リロード</strong> して、問題を確認しましょう。</p>
+    <img src="<%= asset_path('step4_confirm_question.png') %>" class="img-fluid mx-auto d-block my-3 border border-primary rounded" alt="問題確認">
+
+    <h3 class="text-dark font-weight-bold">5. 出題者の選択肢決定</h3>
+    <p>出題者は <strong>「出題者用選択肢」</strong> を開き、読み上げる選択肢をクリックで決定します。その後、問題を読み上げてください。</p>
+    <img src="<%= asset_path('step5_presenter_choice.png') %>" class="img-fluid mx-auto d-block my-3 border border-primary rounded" alt="出題者選択肢">
+
+    <h3 class="text-dark font-weight-bold">6. 回答フェーズ</h3>
+    <p>出題者以外は <strong>自分の選択肢ボタン</strong> を確認し、回答を決めます。全員の回答が決まったら、出題者が <strong>「解答発表する」</strong> ボタンを押します。</p>
+    <img src="<%= asset_path('step6_answer_phase.png') %>" class="img-fluid mx-auto d-block my-3 border border-primary rounded" alt="回答フェーズ">
+
+    <h3 class="text-dark font-weight-bold">7. 答えの確認</h3>
+    <p>全員が <strong>「出題者用選択肢」</strong> を開いて、答えを確認します。</p>
+    <img src="<%= asset_path('step7_check_answer.png') %>" class="img-fluid mx-auto d-block my-3 border border-primary rounded" alt="答えの確認">
+
+    <h3 class="text-dark font-weight-bold">8. 次のクイズへ</h3>
+    <p>出題者や問題を変更し、次のゲームを楽しんでください！</p>
+  </div>
+
+  <div class="text-center mb-5">
+    <%= link_to "トップページへ戻る", root_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+
