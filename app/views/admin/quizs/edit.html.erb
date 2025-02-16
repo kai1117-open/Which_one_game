@@ -3,7 +3,7 @@
   <div class="card bg-light shadow p-4">
   <%= form_with model: @quiz, url: admin_quiz_path(@quiz), method: :patch, local: true do |f| %>
     <div class="mb-3">
-      <%= f.label :question_text, "問題文" %>
+      <%= f.label :question_text, "お題" %>
       <%= f.text_area :question_text, class: 'form-control' %>
     </div>
     <div class="mb-3">
